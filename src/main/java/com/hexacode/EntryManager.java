@@ -53,6 +53,8 @@ public class EntryManager {
             System.err.println("No entries file found.");
         } catch (IOException e) {
             System.err.println("Error reading from file.");
+            System.err.println("Creating new empty list");
+            entryList = new ArrayList<>();
         } catch (ClassNotFoundException e) {
             System.err.println("Class not found: " + e.getMessage());
         }
@@ -78,5 +80,9 @@ public class EntryManager {
         entryList.add(entry);
         entryList.sort(null);
         writeEntries();
+    }
+
+    public ArrayList<Entry> getEntries() {
+        return this.entryList;
     }
 }
