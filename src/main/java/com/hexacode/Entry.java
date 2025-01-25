@@ -31,15 +31,47 @@ public class Entry implements Serializable, Comparable<Entry> {
     }
 
     // setters
-    public void setName(String name) { this.name = name; }
-    public void setSubject(String subject) { this.subject = subject; }
-    public void setDone(boolean done) { this.isDone = done; }
-    public void setType(TodoType type) { this.type = type; }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setDone(boolean done) {
+        this.isDone = done;
+    }
+
+    public void setType(TodoType type) {
+        this.type = type;
+    }
+
     public void setDeadline(LocalDateTime deadline) throws IllegalDateException {
         if (deadline.isBefore(LocalDateTime.now())) {
             throw new IllegalDateException("Todo Entry deadline is in the past.");
         }
     }
+
     // getters
     // implement once needed
+    public String getName() {
+        return this.name;
+    }
+
+    public String getSubject() {
+        return this.subject;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    public TodoType getType() {
+        return this.type;
+    }
+
+    public LocalDateTime getDeadline() {
+        return this.deadline;
+    }
 }
