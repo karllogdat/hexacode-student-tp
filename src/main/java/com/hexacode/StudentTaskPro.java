@@ -1,6 +1,9 @@
 package com.hexacode;
 
 import javax.swing.*;
+
+import com.formdev.flatlaf.FlatDarkLaf;
+
 import java.awt.*;
 import java.time.LocalDateTime;
 
@@ -9,18 +12,15 @@ public class StudentTaskPro extends JFrame {
         super("Student TaskPro");
         Container container = getContentPane();
 
-        container.add(new EntryPanel(new Entry(
-                "name",
-                "subject",
-                Entry.TodoType.REVIEW,
-                LocalDateTime.now()
-        )));
+        container.add(new EntryManagerPanel());
 
-        pack();
+        setSize(400, 600);
         setVisible(true);
     }
 
     public static void main(String[] args) {
+        FlatDarkLaf.setup();
+
         StudentTaskPro application = new StudentTaskPro();
         application.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
