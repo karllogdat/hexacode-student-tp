@@ -21,12 +21,19 @@ public class EntryPanel extends JPanel {
         cbxDone = new JCheckBox("Mark as Done");
         cbxDone.setSelected(entry.isDone());
 
+        try {
+            lblDeadline = new JLabel(entry.getDeadline().toString());
+        } catch (NullPointerException e) {
+            System.err.println("Null date found...");
+            lblDeadline = new JLabel("NO DATE");
+        }
+
         // make these like the ones above,
         // assign new JLabels to the declared fields of the class
         add(new JLabel(entry.getName()));
         add(new JLabel(entry.getSubject()));
         add(new JLabel(entry.getType().toString()));
-        add(new JLabel(entry.getDeadline().toString()));
+        add(lblDeadline);
     }
 
     @Override
