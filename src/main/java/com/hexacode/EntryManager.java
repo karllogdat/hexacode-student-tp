@@ -15,6 +15,7 @@ public class EntryManager {
 
         // reference:
         // https://www.w3schools.com/java/java_files_create.asp
+        // wow such nesting
         try {
             if (!entriesFile.exists()) {
                 if (entriesFile.createNewFile()) {
@@ -29,7 +30,7 @@ public class EntryManager {
             System.err.println("Error creating entries file.");
         }
 
-       readEntries();
+        readEntries();
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +40,8 @@ public class EntryManager {
             ObjectInputStream in = new ObjectInputStream(fileIn);
 
             if (entriesFile.length() == 0) {
+                fileIn.close();
+                in.close();
                 return;
             }
 
@@ -73,7 +76,7 @@ public class EntryManager {
 
     public void addEntry(Entry entry) {
         entryList.add(entry);
-        // TODO: Sort list after adding
+        entryList.sort(null);
         writeEntries();
     }
 }
