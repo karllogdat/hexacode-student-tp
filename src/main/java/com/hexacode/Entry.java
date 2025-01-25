@@ -8,7 +8,15 @@ import java.time.LocalDateTime;
 public class Entry implements Serializable, Comparable<Entry> {
     @Override
     public int compareTo(Entry o) {
-        return this.deadline.compareTo(o.deadline);
+        if (this.deadline == null && o.deadline == null) {
+            return 0;
+        } else if (this.deadline == null) {
+            return -1;
+        } else if (o.deadline == null) {
+            return 1;
+        } else {
+            return this.deadline.compareTo(o.deadline);
+        }
     }
 
     public enum TodoType {
@@ -51,6 +59,8 @@ public class Entry implements Serializable, Comparable<Entry> {
         if (deadline.isBefore(LocalDateTime.now())) {
             throw new IllegalDateException("Todo Entry deadline is in the past.");
         }
+
+        this.deadline = deadline;
     }
 
     // getters
