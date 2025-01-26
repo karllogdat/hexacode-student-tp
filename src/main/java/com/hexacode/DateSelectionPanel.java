@@ -43,19 +43,6 @@ public class DateSelectionPanel extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 1;
         add(timeSpinner, gbc);
-
-        // Button to retrieve date and time
-        // JButton submitButton = new JButton("Get DateTime");
-        // submitButton.addActionListener(_ -> {
-        // LocalDateTime selectedDateTime = getSelectedDateTime();
-        // JOptionPane.showMessageDialog(this, "Selected DateTime: " +
-        // selectedDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
-        // });
-        // gbc.gridx = 0;
-        // gbc.gridy = 2;
-        // gbc.gridwidth = 2;
-        // gbc.anchor = GridBagConstraints.CENTER;
-        // add(submitButton, gbc);
     }
 
     public LocalDateTime getSelectedDateTime() {
