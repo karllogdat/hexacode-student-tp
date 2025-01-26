@@ -22,6 +22,9 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
             entryManager.addEntry(entry);
 
+            pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
+            pnlEntries.add(new EntryPanel(entry));
+
             System.out.println("new entry added");
 
             scpEntries.revalidate();

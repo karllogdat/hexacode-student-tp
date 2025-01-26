@@ -11,38 +11,27 @@ public class DateSelectionPanel extends JPanel {
     private JSpinner timeSpinner;
 
     public DateSelectionPanel() {
-        setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 5, 5, 5);
+        setLayout(new GridLayout(2, 2, 10, 5));
 
         // Date Picker
         JLabel dateLabel = new JLabel("Select Date:");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(dateLabel, gbc);
+        add(dateLabel);
 
         SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
         dateSpinner = new JSpinner(dateModel);
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(dateSpinner, "yyyy-MM-dd");
         dateSpinner.setEditor(dateEditor);
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        add(dateSpinner, gbc);
+        add(dateSpinner);
 
         // Time Picker
         JLabel timeLabel = new JLabel("Select Time:");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        add(timeLabel, gbc);
+        add(timeLabel);
 
         SpinnerDateModel timeModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.MINUTE);
         timeSpinner = new JSpinner(timeModel);
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
         timeSpinner.setEditor(timeEditor);
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        add(timeSpinner, gbc);
+        add(timeSpinner);
     }
 
     public LocalDateTime getSelectedDateTime() {
@@ -52,5 +41,10 @@ public class DateSelectionPanel extends JPanel {
         LocalDateTime dateTime = LocalDateTime.ofInstant(selectedDate.toInstant(), java.time.ZoneId.systemDefault());
         LocalTime time = LocalTime.ofInstant(selectedTime.toInstant(), java.time.ZoneId.systemDefault());
         return dateTime.withHour(time.getHour()).withMinute(time.getMinute());
+    }
+
+    @Override
+    public Dimension getMaximumSize() {
+        return new Dimension(Integer.MAX_VALUE, getPreferredSize().height);
     }
 }

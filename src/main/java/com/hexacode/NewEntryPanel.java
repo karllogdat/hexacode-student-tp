@@ -1,5 +1,6 @@
 package com.hexacode;
 
+import java.awt.*;
 import java.awt.GridLayout;
 import java.time.LocalDateTime;
 
@@ -22,8 +23,9 @@ public class NewEntryPanel extends JPanel {
     };
 
     NewEntryPanel() {
-        setLayout(new GridLayout(4, 2, 10, 10));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        JPanel pnlInputs = new JPanel(new GridLayout(3, 2, 10, 5));
         txfName = new JTextField(15);
         txfSubject = new JTextField(15);
 
@@ -31,12 +33,14 @@ public class NewEntryPanel extends JPanel {
 
         dspDate = new DateSelectionPanel();
 
-        add(new JLabel("Entry Name: "));
-        add(txfName);
-        add(new JLabel("Subject: "));
-        add(txfSubject);
-        add(new JLabel("Entry Type: "));
-        add(cbxType);
+        pnlInputs.add(new JLabel("Entry Name: "));
+        pnlInputs.add(txfName);
+        pnlInputs.add(new JLabel("Subject: "));
+        pnlInputs.add(txfSubject);
+        pnlInputs.add(new JLabel("Entry Type: "));
+        pnlInputs.add(cbxType);
+        add(pnlInputs);
+        add(Box.createRigidArea(new Dimension(0, 5)));
         add(dspDate);
     }
 
