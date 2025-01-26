@@ -2,7 +2,7 @@ package com.hexacode;
 
 import javax.swing.*;
 
-import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import java.awt.*;
 
@@ -18,7 +18,7 @@ public class StudentTaskPro extends JFrame {
     }
 
     public static void main(String[] args) {
-        FlatDarkLaf.setup();
+        FlatLightLaf.setup();
 
         StudentTaskPro application = new StudentTaskPro();
         application.setDefaultCloseOperation(EXIT_ON_CLOSE);

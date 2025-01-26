@@ -3,31 +3,32 @@ package com.hexacode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 
 import javax.swing.*;
-
-import com.hexacode.Entry.TodoType;
 
 public class EntryManagerPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("wow such add");
 
-        Entry entry = new Entry("Unnamed Entry", "Unnamed Subject", TodoType.ACTIVITY,
-                LocalDateTime.of(2025, 12, 30, 0, 0, 0));
+        NewEntryPanel newEntry = new NewEntryPanel();
 
-        entryManager.addEntry(entry);
+        int result = JOptionPane.showConfirmDialog(null, newEntry, "Create new entry", JOptionPane.PLAIN_MESSAGE);
 
-        for (Entry todo : entryManager.getEntries()) {
-            pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
-            pnlEntries.add(new EntryPanel(todo));
+        if (result == JOptionPane.OK_OPTION) {
+            // get field values
+            Entry entry = new Entry(newEntry.getName(), newEntry.getSubject(), newEntry.getTodoType(),
+                    newEntry.getDeadline());
+
+            entryManager.addEntry(entry);
+
+            System.out.println("new entry added");
+
+            scpEntries.revalidate();
+            scpEntries.repaint();
+            pnlEntries.revalidate();
+            pnlEntries.repaint();
         }
-
-        scpEntries.revalidate();
-        scpEntries.repaint();
-        pnlEntries.revalidate();
-        pnlEntries.repaint();
     }
 
     // contains all the entries
@@ -53,6 +54,17 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
         add(scpEntries, BorderLayout.CENTER);
         add(btnNewEntry, BorderLayout.SOUTH);
+
+        // loads all saved entries into manager panel
+        for (Entry todo : entryManager.getEntries()) {
+            pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
+            pnlEntries.add(new EntryPanel(todo));
+        }
+
+        scpEntries.revalidate();
+        scpEntries.repaint();
+        pnlEntries.revalidate();
+        pnlEntries.repaint();
 
         setPreferredSize(new Dimension(400, 600));
     }

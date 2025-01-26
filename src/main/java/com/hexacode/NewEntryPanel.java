@@ -1,5 +1,8 @@
 package com.hexacode;
 
+import java.awt.GridLayout;
+import java.time.LocalDateTime;
+
 import javax.swing.*;
 
 import com.hexacode.Entry.TodoType;
@@ -10,6 +13,7 @@ import com.hexacode.Entry.TodoType;
 public class NewEntryPanel extends JPanel {
     private JTextField txfName, txfSubject;
     private JComboBox<TodoType> cbxType;
+    private DateSelectionPanel dspDate;
 
     private static TodoType[] typeChoices = {
             TodoType.ACTIVITY,
@@ -18,10 +22,14 @@ public class NewEntryPanel extends JPanel {
     };
 
     NewEntryPanel() {
-        txfName = new JTextField(30);
-        txfSubject = new JTextField(30);
+        setLayout(new GridLayout(4, 2, 10, 10));
+
+        txfName = new JTextField(15);
+        txfSubject = new JTextField(15);
 
         cbxType = new JComboBox<>(typeChoices);
+
+        dspDate = new DateSelectionPanel();
 
         add(new JLabel("Entry Name: "));
         add(txfName);
@@ -29,11 +37,22 @@ public class NewEntryPanel extends JPanel {
         add(txfSubject);
         add(new JLabel("Entry Type: "));
         add(cbxType);
+        add(dspDate);
+    }
 
-        int result = JOptionPane.showConfirmDialog(null, this, "Enter New Entry", JOptionPane.OK_CANCEL_OPTION);
+    public String getName() {
+        return txfName.getText();
+    }
 
-        if (result == JOptionPane.OK_OPTION) {
+    public String getSubject() {
+        return txfSubject.getText();
+    }
 
-        }
+    public TodoType getTodoType() {
+        return (TodoType) cbxType.getSelectedItem();
+    }
+
+    public LocalDateTime getDeadline() {
+        return dspDate.getSelectedDateTime();
     }
 }

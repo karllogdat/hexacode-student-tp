@@ -22,10 +22,8 @@ public class EntryPanel extends JPanel {
 
         setBorder(
                 BorderFactory.createCompoundBorder(
-                    new LineBorder(Color.GRAY, 1, true),
-                    new EmptyBorder(10, 10, 10, 10)
-                    )
-                );
+                        new LineBorder(Color.LIGHT_GRAY, 1, true),
+                        new EmptyBorder(10, 10, 10, 10)));
 
         lblName = new JLabel(entry.getName());
         lblSubject = new JLabel(entry.getSubject());
