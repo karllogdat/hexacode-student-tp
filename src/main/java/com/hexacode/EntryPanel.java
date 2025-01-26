@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+// TODO: add mark as done and entry removal
 public class EntryPanel extends JPanel {
     private Entry entry;
     private JLabel lblName, lblSubject, lblType, lblDeadline;

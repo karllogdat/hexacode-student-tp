@@ -15,6 +15,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
         int result = JOptionPane.showConfirmDialog(null, newEntry, "Create new entry", JOptionPane.PLAIN_MESSAGE);
 
+        // TODO: handle invalid date usign try catch
         if (result == JOptionPane.OK_OPTION) {
             // get field values
             Entry entry = new Entry(newEntry.getName(), newEntry.getSubject(), newEntry.getTodoType(),
