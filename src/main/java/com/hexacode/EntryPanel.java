@@ -3,6 +3,8 @@ package com.hexacode;
 import java.awt.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class EntryPanel extends JPanel {
     private Entry entry;
@@ -18,6 +20,17 @@ public class EntryPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setAlignmentX(LEFT_ALIGNMENT);
 
+        setBorder(
+                BorderFactory.createCompoundBorder(
+                    new LineBorder(Color.GRAY, 1, true),
+                    new EmptyBorder(10, 10, 10, 10)
+                    )
+                );
+
+        lblName = new JLabel(entry.getName());
+        lblSubject = new JLabel(entry.getSubject());
+        lblType = new JLabel(entry.getType().toString());
+
         cbxDone = new JCheckBox("Mark as Done");
         cbxDone.setSelected(entry.isDone());
 
@@ -28,11 +41,9 @@ public class EntryPanel extends JPanel {
             lblDeadline = new JLabel("NO DATE");
         }
 
-        // make these like the ones above,
-        // assign new JLabels to the declared fields of the class
-        add(new JLabel(entry.getName()));
-        add(new JLabel(entry.getSubject()));
-        add(new JLabel(entry.getType().toString()));
+        add(lblName);
+        add(lblSubject);
+        add(lblType);
         add(lblDeadline);
     }
 

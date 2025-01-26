@@ -20,9 +20,12 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         entryManager.addEntry(entry);
 
         for (Entry todo : entryManager.getEntries()) {
+            pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
             pnlEntries.add(new EntryPanel(todo));
         }
 
+        scpEntries.revalidate();
+        scpEntries.repaint();
         pnlEntries.revalidate();
         pnlEntries.repaint();
     }
@@ -35,19 +38,22 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
     private JButton btnNewEntry;
 
     EntryManagerPanel() {
+        setLayout(new BorderLayout());
+
         entryManager = new EntryManager();
 
         pnlEntries = new JPanel();
         pnlEntries.setLayout(new BoxLayout(pnlEntries, BoxLayout.Y_AXIS));
 
-        scpEntries = new JScrollPane();
+        scpEntries = new JScrollPane(pnlEntries);
         scpEntries.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scpEntries.setViewportView(pnlEntries);
 
         btnNewEntry = new JButton("Add new entry");
         btnNewEntry.addActionListener(this);
 
-        add(pnlEntries);
-        add(btnNewEntry);
+        add(scpEntries, BorderLayout.CENTER);
+        add(btnNewEntry, BorderLayout.SOUTH);
+
+        setPreferredSize(new Dimension(400, 600));
     }
 }
