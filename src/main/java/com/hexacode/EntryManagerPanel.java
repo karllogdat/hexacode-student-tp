@@ -3,8 +3,14 @@ package com.hexacode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
+import javax.naming.InvalidNameException;
 import javax.swing.*;
+
+import com.hexacode.Entry.TodoType;
+import com.hexacode.exceptions.IllegalDateException;
+import com.hexacode.exceptions.InvalidSubjectException;
 
 public class EntryManagerPanel extends JPanel implements ActionListener {
     @Override
@@ -13,13 +19,34 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
         NewEntryPanel newEntry = new NewEntryPanel();
 
-        int result = JOptionPane.showConfirmDialog(null, newEntry, "Create new entry", JOptionPane.PLAIN_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(null, newEntry, "Create new entry", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-        // TODO: handle invalid date usign try catch
         if (result == JOptionPane.OK_OPTION) {
             // get field values
-            Entry entry = new Entry(newEntry.getName(), newEntry.getSubject(), newEntry.getTodoType(),
-                    newEntry.getDeadline());
+            Entry entry;
+            try {
+                String name = newEntry.getName();
+                String subj = newEntry.getSubject();
+                TodoType type = newEntry.getTodoType();
+                LocalDateTime deadline = newEntry.getDeadline();
+
+                if (name.equals("")) 
+                    throw new InvalidNameException("Empty entry name is not allowed");
+
+                if (subj.equals(""))
+                    throw new InvalidSubjectException("Empty subject name is not allowed");
+
+                entry = new Entry(name, subj, type, deadline);
+            } catch (IllegalDateException exception) {
+                JOptionPane.showMessageDialog(newEntry, "Illegal date time:\nNew entry is in the past", "Illegal Date Exception", JOptionPane.ERROR_MESSAGE);
+                return;
+            } catch (InvalidNameException exception) {
+                JOptionPane.showMessageDialog(newEntry, "Invalid entry name:\nNew entry must be named", "Invalid Name Exception", JOptionPane.ERROR_MESSAGE);
+                return;
+            } catch (InvalidSubjectException exception) {
+                JOptionPane.showMessageDialog(newEntry, "Invalid subject name:\nNew entry must have a subject name", "Invalid Subject Exception", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             entryManager.addEntry(entry);
 
