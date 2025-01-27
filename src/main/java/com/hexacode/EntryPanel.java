@@ -3,8 +3,6 @@ package com.hexacode;
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 // TODO: add mark as done and entry removal
 public class EntryPanel extends JPanel {
@@ -22,9 +20,8 @@ public class EntryPanel extends JPanel {
         setAlignmentX(LEFT_ALIGNMENT);
 
         setBorder(
-                BorderFactory.createCompoundBorder(
-                        new LineBorder(Color.LIGHT_GRAY, 1, true),
-                        new EmptyBorder(10, 10, 10, 10)));
+                BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBackground(new Color(0x38374F));
 
         lblName = new JLabel(entry.getName());
         lblSubject = new JLabel(entry.getSubject());

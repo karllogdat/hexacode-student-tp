@@ -82,6 +82,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
         pnlEntries = new JPanel();
         pnlEntries.setLayout(new BoxLayout(pnlEntries, BoxLayout.Y_AXIS));
+        pnlEntries.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         scpEntries = new JScrollPane(pnlEntries);
         scpEntries.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
