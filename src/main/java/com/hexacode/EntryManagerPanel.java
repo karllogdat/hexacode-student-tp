@@ -16,7 +16,6 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         int result = JOptionPane.showConfirmDialog(null, newEntry, "Create new entry", JOptionPane.PLAIN_MESSAGE);
 
         // TODO: handle invalid date usign try catch
-        // TODO: rerender all entries so everything is sorted
         if (result == JOptionPane.OK_OPTION) {
             // get field values
             Entry entry = new Entry(newEntry.getName(), newEntry.getSubject(), newEntry.getTodoType(),
@@ -28,6 +27,12 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
             pnlEntries.add(new EntryPanel(entry));
 
             System.out.println("new entry added");
+
+            pnlEntries.removeAll();
+            for (Entry todo : entryManager.getEntries()) {
+                pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
+                pnlEntries.add(new EntryPanel(todo));
+            }
 
             scpEntries.revalidate();
             scpEntries.repaint();
