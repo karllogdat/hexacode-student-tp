@@ -3,6 +3,8 @@ package com.hexacode;
 import javax.swing.*;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.hexacode.themes.Hexacode;
 
 import java.awt.*;
 
@@ -18,7 +20,8 @@ public class StudentTaskPro extends JFrame {
     }
 
     public static void main(String[] args) {
-        FlatDarkLaf.setup();
+        FlatLaf.registerCustomDefaultsSource("com.hexacode.themes");
+        Hexacode.setup();
         StudentTaskPro application = new StudentTaskPro();
         application.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
