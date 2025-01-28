@@ -4,6 +4,8 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import java.time.format.DateTimeFormatter;
+
 // TODO: add mark as done and entry removal
 
 public class EntryPanel extends JPanel {
@@ -44,7 +46,8 @@ public class EntryPanel extends JPanel {
         cbxDone.setForeground(Color.WHITE);
 
         try {
-            lblDeadline = new JLabel(entry.getDeadline().toString());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            lblDeadline = new JLabel(entry.getDeadline().format(formatter));  // Use the formatter
         } catch (NullPointerException e) {
             System.err.println("Null date found...");
             lblDeadline = new JLabel("NO DATE");
