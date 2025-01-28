@@ -10,11 +10,14 @@ public class DateSelectionPanel extends JPanel {
     private JSpinner dateSpinner;
     private JSpinner timeSpinner;
 
+    private static final Font CUSTOM_FONT = new Font("Inter", Font.PLAIN, 14);
+
     public DateSelectionPanel() {
         setLayout(new GridLayout(2, 2, 10, 5));
 
         // Date Picker
         JLabel dateLabel = new JLabel("Select Date:");
+        dateLabel.setFont(CUSTOM_FONT);
         add(dateLabel);
 
         SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
@@ -25,6 +28,7 @@ public class DateSelectionPanel extends JPanel {
 
         // Time Picker
         JLabel timeLabel = new JLabel("Select Time:");
+        timeLabel.setFont(CUSTOM_FONT);
         add(timeLabel);
 
         SpinnerDateModel timeModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.MINUTE);

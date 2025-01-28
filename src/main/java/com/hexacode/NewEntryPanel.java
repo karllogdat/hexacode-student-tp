@@ -16,6 +16,7 @@ public class NewEntryPanel extends JPanel {
     private JComboBox<TodoType> cbxType;
     private DateSelectionPanel dspDate;
 
+    private static final Font CUSTOM_FONT = new Font("Inter", Font.PLAIN, 14);
     private static TodoType[] typeChoices = {
             TodoType.ACTIVITY,
             TodoType.EXAM,
@@ -25,20 +26,34 @@ public class NewEntryPanel extends JPanel {
     NewEntryPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+
         JPanel pnlInputs = new JPanel(new GridLayout(3, 2, 10, 5));
         txfName = new JTextField(15);
         txfSubject = new JTextField(15);
+        txfSubject.setFont(CUSTOM_FONT);
+        txfName.setFont(CUSTOM_FONT);
 
         cbxType = new JComboBox<>(typeChoices);
+        cbxType.setFont(CUSTOM_FONT);
 
         dspDate = new DateSelectionPanel();
+        dspDate.setFont(CUSTOM_FONT);
 
-        pnlInputs.add(new JLabel("Entry Name: "));
+        JLabel lblName = new JLabel("Entry Name: ");
+        lblName.setFont(CUSTOM_FONT);
+        pnlInputs.add(lblName);
         pnlInputs.add(txfName);
-        pnlInputs.add(new JLabel("Subject: "));
+
+        JLabel lblSubject = new JLabel("Subject: ");
+        lblSubject.setFont(CUSTOM_FONT);
+        pnlInputs.add(lblSubject);
         pnlInputs.add(txfSubject);
-        pnlInputs.add(new JLabel("Entry Type: "));
+
+        JLabel lblType = new JLabel("Entry Type: ");
+        lblType.setFont(CUSTOM_FONT);
+        pnlInputs.add(lblType);
         pnlInputs.add(cbxType);
+
         add(pnlInputs);
         add(Box.createRigidArea(new Dimension(0, 5)));
         add(dspDate);
