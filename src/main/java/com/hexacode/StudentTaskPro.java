@@ -14,7 +14,7 @@ public class StudentTaskPro extends JFrame {
 
         container.add(new EntryManagerPanel());
 
-        setSize(400, 600);
+        setSize(800, 600);
         setVisible(true);
     }
 

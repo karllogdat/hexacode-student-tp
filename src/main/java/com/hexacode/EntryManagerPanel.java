@@ -16,6 +16,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("wow such add");
+        sidebarPanel.update();
 
         NewEntryPanel newEntry = new NewEntryPanel();
 
@@ -70,6 +71,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
     // contains all the entries
     private EntryManager entryManager;
+    private SidebarPanel sidebarPanel;
     private JScrollPane scpEntries;
     private JPanel pnlEntries;
 
@@ -79,6 +81,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         setLayout(new BorderLayout());
 
         entryManager = new EntryManager();
+        sidebarPanel = new SidebarPanel(entryManager);
 
         pnlEntries = new JPanel();
         pnlEntries.setLayout(new BoxLayout(pnlEntries, BoxLayout.Y_AXIS));
@@ -91,6 +94,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         btnNewEntry = new JButton("Add new entry");
         btnNewEntry.addActionListener(this);
 
+        add(sidebarPanel, BorderLayout.WEST);
         add(scpEntries, BorderLayout.CENTER);
         add(btnNewEntry, BorderLayout.SOUTH);
 
@@ -99,6 +103,8 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
             pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
             pnlEntries.add(new EntryPanel(todo));
         }
+
+        entryManager.getEntriesWithinWeek();
 
         scpEntries.revalidate();
         scpEntries.repaint();

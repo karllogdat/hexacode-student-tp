@@ -1,6 +1,7 @@
 package com.hexacode;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EntryManager {
@@ -90,5 +91,20 @@ public class EntryManager {
 
     public ArrayList<Entry> getEntries() {
         return this.entryList;
+    }
+
+    public ArrayList<Entry> getEntriesWithinWeek() {
+        ArrayList<Entry> withinWeek = new ArrayList<>();
+
+        for (Entry entry : entryList) {
+            int difference = entry.getDeadline().getDayOfYear() - LocalDateTime.now().getDayOfYear();
+            if ( difference <= 7) {
+                withinWeek.add(entry);
+                System.out.println("Difference: " + difference);
+                System.out.println(entry.toString());
+            }
+        }
+
+        return withinWeek;
     }
 }
