@@ -17,10 +17,12 @@ public class NewEntryPanel extends JPanel {
     private DateSelectionPanel dspDate;
 
     private static final Font CUSTOM_FONT = new Font("Inter", Font.PLAIN, 14);
-    private static TodoType[] typeChoices = {
+    private static final TodoType[] typeChoices = {
             TodoType.ACTIVITY,
             TodoType.EXAM,
-            TodoType.REVIEW
+            TodoType.REVIEW,
+            TodoType.ASSIGNMENT,
+            TodoType.GROUPWORK,
     };
 
     NewEntryPanel() {

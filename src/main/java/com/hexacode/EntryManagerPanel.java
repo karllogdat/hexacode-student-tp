@@ -85,6 +85,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         pnlEntries.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         scpEntries = new JScrollPane(pnlEntries);
+        scpEntries.setBorder(BorderFactory.createEmptyBorder());
         scpEntries.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         btnNewEntry = new JButton("Add new entry");

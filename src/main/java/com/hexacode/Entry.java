@@ -23,6 +23,8 @@ public class Entry implements Serializable, Comparable<Entry> {
         REVIEW,
         ACTIVITY,
         EXAM,
+        ASSIGNMENT,
+        GROUPWORK,
     }
 
     private String name, subject;
