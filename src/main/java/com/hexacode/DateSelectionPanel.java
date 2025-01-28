@@ -23,6 +23,7 @@ public class DateSelectionPanel extends JPanel {
         SpinnerDateModel dateModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.DAY_OF_MONTH);
         dateSpinner = new JSpinner(dateModel);
         JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(dateSpinner, "yyyy-MM-dd");
+        dateEditor.getTextField().setFont(CUSTOM_FONT);
         dateSpinner.setEditor(dateEditor);
         add(dateSpinner);
 
@@ -34,6 +35,7 @@ public class DateSelectionPanel extends JPanel {
         SpinnerDateModel timeModel = new SpinnerDateModel(new Date(), null, null, java.util.Calendar.MINUTE);
         timeSpinner = new JSpinner(timeModel);
         JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
+        timeEditor.getTextField().setFont(CUSTOM_FONT);
         timeSpinner.setEditor(timeEditor);
         add(timeSpinner);
     }
