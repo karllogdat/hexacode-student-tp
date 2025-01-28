@@ -19,7 +19,7 @@ public class StudentTaskPro extends JFrame {
     }
 
     public static void main(String[] args) {
-        FlatLaf.registerCustomDefaultsSource("com.hexacode.themes");
+        FlatLaf.registerCustomDefaultsSource("themes");
         Hexacode.setup();
 
         StudentTaskPro application = new StudentTaskPro();
