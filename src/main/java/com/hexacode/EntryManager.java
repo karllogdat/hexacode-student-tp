@@ -82,6 +82,12 @@ public class EntryManager {
         writeEntries();
     }
 
+    public void deleteEntry(Entry entry) {
+        entryList.remove(entry);
+        entryList.sort(null);
+        writeEntries();
+    }
+
     public ArrayList<Entry> getEntries() {
         return this.entryList;
     }
