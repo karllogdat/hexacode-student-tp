@@ -48,24 +48,14 @@ public class HeaderPanel extends JPanel {
     private ImageIcon loadCircularLogo() {
         BufferedImage originalImage = null;
 
-        try {
-            URL imageUrl = getClass().getResource("src/main/resources/themes/logo.png");
-            if (imageUrl != null) {
-                originalImage = ImageIO.read(imageUrl);
+        try (var stream = getClass().getResourceAsStream("/themes/logo.png")) {
+            if (stream != null) {
+                originalImage = ImageIO.read(stream);
+            } else {
+                System.out.println("Logo not found in resources!");
             }
         } catch (IOException e) {
-            System.out.println("Error loading logo from resources: " + e.getMessage());
-        }
-
-        if (originalImage == null) {
-            File file = new File("src/main/resources/themes/logo.png");
-            if (file.exists()) {
-                try {
-                    originalImage = ImageIO.read(file);
-                } catch (IOException e) {
-                    System.out.println("Error loading logo from absolute path: " + e.getMessage());
-                }
-            }
+            System.out.println("Error loading logo: " + e.getMessage());
         }
 
         if (originalImage != null) {
