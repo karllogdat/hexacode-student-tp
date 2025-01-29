@@ -153,7 +153,16 @@ public class EntryPanel extends JPanel {
 //                    parent.revalidate();
 //                    parent.repaint();
 //                }
-                entryManagerPanel.deleteEntry(entry);
+                int result = JOptionPane.showConfirmDialog(
+                        this,
+                        "Are you sure you want to delete this entry? ",
+                        "Confirm deletion",
+                        JOptionPane.OK_CANCEL_OPTION
+                );
+
+                if (result == JOptionPane.OK_OPTION) {
+                    entryManagerPanel.deleteEntry(entry);
+                }
             }
             entryManagerPanel.rerender();
         });
