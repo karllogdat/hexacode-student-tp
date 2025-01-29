@@ -71,3 +71,9 @@ mvn clean compile exec:java
 
 4. Closing the app saves the list, so you can get back the entries when
    opening a new session.
+
+## Contributors
+
+<p align="center">
+    <img alt="Contributors" src="src/main/resources/themes/Contributors.png" title="Contributors">
+</p>
