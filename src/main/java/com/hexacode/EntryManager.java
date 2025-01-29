@@ -111,6 +111,10 @@ public class EntryManager {
         ArrayList<Entry> withinWeek = new ArrayList<>();
 
         for (Entry entry : entryList) {
+            if (entry.isDone()) {
+                continue;
+            }
+
             int difference = entry.getDeadline().getDayOfYear() - LocalDateTime.now().getDayOfYear();
             if ( difference <= 7) {
                 withinWeek.add(entry);

@@ -141,6 +141,8 @@ public class EntryPanel extends JPanel {
             }
             revalidate();
             repaint();
+
+            entryManagerPanel.rerender();
         });
 
         cbxDelete.addActionListener(e -> {
@@ -153,6 +155,7 @@ public class EntryPanel extends JPanel {
 //                }
                 entryManagerPanel.deleteEntry(entry);
             }
+            entryManagerPanel.rerender();
         });
     }
 

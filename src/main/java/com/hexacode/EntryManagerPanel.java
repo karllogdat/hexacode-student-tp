@@ -56,11 +56,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
             System.out.println("new entry added");
 
-            pnlEntries.removeAll();
-            for (Entry todo : entryManager.getEntries()) {
-                pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
-                pnlEntries.add(new EntryPanel(this, todo));
-            }
+            this.rerender();
 
             scpEntries.revalidate();
             scpEntries.repaint();
@@ -112,6 +108,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
     }
 
     public void rerender() {
+        sidebarPanel.update();
         pnlEntries.removeAll();
 
         for (Entry todo: entryManager.getEntries()) {
