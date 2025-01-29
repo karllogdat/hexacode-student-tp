@@ -14,6 +14,15 @@ urgent or significant task first.
 
 ## How to Use
 
+<p align="center">
+    <img alt="Manual" src="src/main/resources/themes/Manual.png" title="Manual">
+</p>
+
+<p align="center">
+    <img alt="NewEntry" src="src/main/resources/themes/NewEntry.png" title="NewEntry">
+</p>
+
+
 1. Add new entries using the `Add new entry` button or using the shortcut 
 `Alt + A`.
    - When adding entries, make sure that: `Name` and `Subject` is not empty,
