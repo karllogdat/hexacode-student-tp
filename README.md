@@ -10,7 +10,6 @@ It enables the students to input their specific academic tasks and
 classify them by their respective deadlines. The overall central design 
 of this software is prioritization, in which aims to assist the students 
 to set priority to their to-do tasks while keeping emphasis on the most 
-urgent or significant task first.
 
 ## Features
 
@@ -48,6 +47,14 @@ mvn clean compile exec:java
 ```
 
 ## How to Use
+
+<p align="center">
+    <img alt="Manual" src="src/main/resources/themes/Manual.png" title="Manual">
+</p>
+
+<p align="center">
+    <img alt="NewEntry" src="src/main/resources/themes/NewEntry.png" title="NewEntry">
+</p>
 
 1. Add new entries using the `Add new entry` button or using the shortcut
    `Alt + A`.
