@@ -7,12 +7,21 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
+/**
+ * Panel for user input in date and time selection
+ */
 public class DateSelectionPanel extends JPanel {
-    private JSpinner dateSpinner;
-    private JSpinner timeSpinner;
+    private final JSpinner dateSpinner;
+    private final JSpinner timeSpinner;
 
+    // font used for most of the application text
     private static final Font CUSTOM_FONT = new Font("Inter", Font.PLAIN, 14);
 
+    /**
+     * Creates a {@link DateSelectionPanel} instance.
+     * <p>
+     * Only used in {@link NewEntryPanel}
+     */
     public DateSelectionPanel() {
         setLayout(new GridLayout(2, 2, 10, 5));
 
@@ -41,6 +50,12 @@ public class DateSelectionPanel extends JPanel {
         add(timeSpinner);
     }
 
+
+    /**
+     * Gets the {@link LocalDateTime} selected in both spinners.
+     *
+     * @return {@link LocalDateTime} spinner values
+     */
     public LocalDateTime getSelectedDateTime() {
         Date selectedDate = (Date) dateSpinner.getValue();
         Date selectedTime = (Date) timeSpinner.getValue();
@@ -50,6 +65,7 @@ public class DateSelectionPanel extends JPanel {
         return dateTime.withHour(time.getHour()).withMinute(time.getMinute());
     }
 
+    // required for the panel to grow in size for layout purposes
     @Override
     public Dimension getMaximumSize() {
         return new Dimension(Integer.MAX_VALUE, getPreferredSize().height);

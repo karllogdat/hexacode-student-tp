@@ -6,8 +6,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.time.format.DateTimeFormatter;
 
-// TODO: add mark as done and entry removal
-
 public class EntryPanel extends JPanel {
     private static final Font CUSTOM_FONT = new Font("Inter", Font.PLAIN, 14);
     private Entry entry;
@@ -147,12 +145,6 @@ public class EntryPanel extends JPanel {
 
         cbxDelete.addActionListener(e -> {
             if (cbxDelete.isSelected()) {
-//                Container parent = this.getParent();
-//                if (parent != null) {
-//                    parent.remove(this);
-//                    parent.revalidate();
-//                    parent.repaint();
-//                }
                 int result = JOptionPane.showConfirmDialog(
                         this,
                         "Are you sure you want to delete this entry? ",
