@@ -2,6 +2,7 @@ package com.hexacode;
 
 import java.awt.*;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 
 import javax.swing.*;
@@ -28,8 +29,8 @@ public class NewEntryPanel extends JPanel {
     NewEntryPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-
         JPanel pnlInputs = new JPanel(new GridLayout(3, 2, 10, 5));
+
         txfName = new JTextField(15);
         txfSubject = new JTextField(15);
         txfSubject.setFont(CUSTOM_FONT);
@@ -41,18 +42,24 @@ public class NewEntryPanel extends JPanel {
         dspDate = new DateSelectionPanel();
         dspDate.setFont(CUSTOM_FONT);
 
-        JLabel lblName = new JLabel("Entry Name: ");
+        JLabel lblName = new JLabel("Name: ");
         lblName.setFont(CUSTOM_FONT);
+        lblName.setDisplayedMnemonic(KeyEvent.VK_N);
+        lblName.setLabelFor(txfName);
         pnlInputs.add(lblName);
         pnlInputs.add(txfName);
 
         JLabel lblSubject = new JLabel("Subject: ");
         lblSubject.setFont(CUSTOM_FONT);
+        lblSubject.setDisplayedMnemonic(KeyEvent.VK_S);
+        lblSubject.setLabelFor(txfSubject);
         pnlInputs.add(lblSubject);
         pnlInputs.add(txfSubject);
 
-        JLabel lblType = new JLabel("Entry Type: ");
+        JLabel lblType = new JLabel("Type: ");
         lblType.setFont(CUSTOM_FONT);
+        lblType.setDisplayedMnemonic(KeyEvent.VK_T);
+        lblType.setLabelFor(cbxType);
         pnlInputs.add(lblType);
         pnlInputs.add(cbxType);
 

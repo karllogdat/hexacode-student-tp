@@ -89,6 +89,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         scpEntries.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         btnNewEntry = new JButton("Add new entry");
+        btnNewEntry.setMnemonic('A');
         btnNewEntry.addActionListener(this);
 
         add(sidebarPanel, BorderLayout.WEST);
