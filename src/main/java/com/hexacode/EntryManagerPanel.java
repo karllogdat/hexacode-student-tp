@@ -69,7 +69,6 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         }
     }
 
-    // contains all the entries
     private EntryManager entryManager;
     private SidebarPanel sidebarPanel;
     private JScrollPane scpEntries;
@@ -79,6 +78,8 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
 
     EntryManagerPanel() {
         setLayout(new BorderLayout());
+
+        add(new HeaderPanel(), BorderLayout.NORTH);
 
         entryManager = new EntryManager();
         sidebarPanel = new SidebarPanel(entryManager);
@@ -98,7 +99,6 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         add(scpEntries, BorderLayout.CENTER);
         add(btnNewEntry, BorderLayout.SOUTH);
 
-        // loads all saved entries into manager panel
         for (Entry todo : entryManager.getEntries()) {
             pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
             pnlEntries.add(new EntryPanel(todo));
