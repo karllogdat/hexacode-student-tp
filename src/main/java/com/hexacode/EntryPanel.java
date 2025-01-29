@@ -14,10 +14,13 @@ public class EntryPanel extends JPanel {
     private JLabel lblName, lblSubject, lblType, lblDeadline;
     private JCheckBox cbxDone, cbxDelete;
 
+    private EntryManagerPanel entryManagerPanel;
+
     private JPanel contentPanel, checkboxPanel;
 
-    EntryPanel(Entry entry) {
+    EntryPanel(EntryManagerPanel entryManagerPanel, Entry entry) {
         this.entry = entry;
+        this.entryManagerPanel = entryManagerPanel;
         setupUI();
         setupListeners();
     }
@@ -77,6 +80,14 @@ public class EntryPanel extends JPanel {
         cbxDelete.setForeground(Color.WHITE);
         cbxDelete.setBackground(new Color(0x38374F));
 
+        if (entry.isDone()) {
+            cbxDone.setSelected(true);
+            markAsDone();
+        } else {
+            cbxDone.setSelected(false);
+            markAsUndone();
+        }
+
         checkboxPanel.add(cbxDone);
         checkboxPanel.add(cbxDelete);
 
@@ -84,37 +95,49 @@ public class EntryPanel extends JPanel {
         add(checkboxPanel, BorderLayout.SOUTH);
     }
 
+    private void markAsDone() {
+        entry.setDone(true);
+
+        setBackground(new Color(0x292232));
+        contentPanel.setBackground(new Color((0x292232)));
+        checkboxPanel.setBackground((new Color(0x292232)));
+        cbxDone.setBackground(new Color(0x292232));
+        cbxDelete.setBackground(new Color(0x292232));
+
+        setBorder(
+                BorderFactory.createCompoundBorder(
+                        new LineBorder(new Color(0x38374F), 1, true),
+                        new EmptyBorder(10, 10, 10, 10)
+                )
+        );
+
+        lblName.setForeground(Color.LIGHT_GRAY);
+        lblSubject.setForeground(Color.LIGHT_GRAY);
+        lblType.setForeground(Color.LIGHT_GRAY);
+        lblDeadline.setForeground(Color.LIGHT_GRAY);
+    }
+
+    private void markAsUndone() {
+        entry.setDone(false);
+
+        setBackground(new Color(0x38374F));
+        contentPanel.setBackground(new Color(0x38374F));
+        checkboxPanel.setBackground(new Color(0x38374F));
+        cbxDone.setBackground(new Color(0x38374F));
+        cbxDelete.setBackground(new Color(0x38374F));
+
+        lblName.setForeground(Color.WHITE);
+        lblSubject.setForeground(Color.WHITE);
+        lblType.setForeground(Color.WHITE);
+        lblDeadline.setForeground(Color.WHITE);
+    }
+
     private void setupListeners() {
         cbxDone.addActionListener(e -> {
             if (cbxDone.isSelected()) {
-                setBackground(new Color(0x292232));
-                contentPanel.setBackground(new Color((0x292232)));
-                checkboxPanel.setBackground((new Color(0x292232)));
-                cbxDone.setBackground(new Color(0x292232));
-                cbxDelete.setBackground(new Color(0x292232));
-
-                setBorder(
-                        BorderFactory.createCompoundBorder(
-                                new LineBorder(new Color(0x38374F), 1, true),
-                                new EmptyBorder(10, 10, 10, 10)
-                        )
-                );
-
-                lblName.setForeground(Color.LIGHT_GRAY);
-                lblSubject.setForeground(Color.LIGHT_GRAY);
-                lblType.setForeground(Color.LIGHT_GRAY);
-                lblDeadline.setForeground(Color.LIGHT_GRAY);
+                markAsDone();
             } else {
-                setBackground(new Color(0x38374F));
-                contentPanel.setBackground(new Color(0x38374F));
-                checkboxPanel.setBackground(new Color(0x38374F));
-                cbxDone.setBackground(new Color(0x38374F));
-                cbxDelete.setBackground(new Color(0x38374F));
-
-                lblName.setForeground(Color.WHITE);
-                lblSubject.setForeground(Color.WHITE);
-                lblType.setForeground(Color.WHITE);
-                lblDeadline.setForeground(Color.WHITE);
+                markAsUndone();
             }
             revalidate();
             repaint();
@@ -122,12 +145,13 @@ public class EntryPanel extends JPanel {
 
         cbxDelete.addActionListener(e -> {
             if (cbxDelete.isSelected()) {
-                Container parent = this.getParent();
-                if (parent != null) {
-                    parent.remove(this);
-                    parent.revalidate();
-                    parent.repaint();
-                }
+//                Container parent = this.getParent();
+//                if (parent != null) {
+//                    parent.remove(this);
+//                    parent.revalidate();
+//                    parent.repaint();
+//                }
+                entryManagerPanel.deleteEntry(entry);
             }
         });
     }

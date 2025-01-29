@@ -52,14 +52,14 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
             entryManager.addEntry(entry);
 
             pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
-            pnlEntries.add(new EntryPanel(entry));
+            pnlEntries.add(new EntryPanel(this, entry));
 
             System.out.println("new entry added");
 
             pnlEntries.removeAll();
             for (Entry todo : entryManager.getEntries()) {
                 pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
-                pnlEntries.add(new EntryPanel(todo));
+                pnlEntries.add(new EntryPanel(this, todo));
             }
 
             scpEntries.revalidate();
@@ -99,10 +99,7 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         add(scpEntries, BorderLayout.CENTER);
         add(btnNewEntry, BorderLayout.SOUTH);
 
-        for (Entry todo : entryManager.getEntries()) {
-            pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
-            pnlEntries.add(new EntryPanel(todo));
-        }
+        rerender();
 
         entryManager.getEntriesWithinWeek();
 
@@ -112,5 +109,28 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
         pnlEntries.repaint();
 
         setPreferredSize(new Dimension(400, 600));
+    }
+
+    public void rerender() {
+        pnlEntries.removeAll();
+
+        for (Entry todo: entryManager.getEntries()) {
+            pnlEntries.add(Box.createRigidArea(new Dimension(0, 10)));
+            pnlEntries.add(new EntryPanel(this, todo));
+        }
+
+        scpEntries.revalidate();
+        scpEntries.repaint();
+        pnlEntries.revalidate();
+        pnlEntries.repaint();
+    }
+
+    public void deleteEntry(Entry entry) {
+        this.entryManager.deleteEntry(entry);
+        rerender();
+    }
+
+    public void saveEntries() {
+        entryManager.saveEntries();
     }
 }

@@ -62,6 +62,16 @@ public class EntryManager {
     }
 
     private void writeEntries() {
+        ArrayList<Entry> newEntryList = new ArrayList<>();
+
+        for (Entry entry : entryList) {
+            if (!entry.isDone()) {
+                newEntryList.add(entry);
+            }
+        }
+
+        entryList = newEntryList;
+
         try {
             FileOutputStream fileOut = new FileOutputStream(entriesFile);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -75,6 +85,10 @@ public class EntryManager {
         } catch (IOException e) {
             System.err.println("Error writing in file. " + e.getMessage());
         }
+    }
+
+    public void saveEntries() {
+        writeEntries();
     }
 
     public void addEntry(Entry entry) {

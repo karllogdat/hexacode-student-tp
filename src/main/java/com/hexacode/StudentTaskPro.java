@@ -6,13 +6,24 @@ import com.formdev.flatlaf.FlatLaf;
 import com.hexacode.themes.Hexacode;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class StudentTaskPro extends JFrame {
     StudentTaskPro() {
         super("Student TaskPro");
         Container container = getContentPane();
 
-        container.add(new EntryManagerPanel());
+        EntryManagerPanel entryManagerPanel = new EntryManagerPanel();
+
+        container.add(entryManagerPanel);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                entryManagerPanel.saveEntries();
+            }
+        });
 
         setSize(800, 600);
         setVisible(true);
