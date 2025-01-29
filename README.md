@@ -1,7 +1,7 @@
 # Student TaskPro
 
-<p style="align:center">
-    <img style="align:center" alt="Application Logo" src="src/main/resources/themes/logo.png" title="Application Logo" width="150" height="150">
+<p align="center">
+    <img alt="Application Logo" src="src/main/resources/themes/logo.png" title="Application Logo" width="150" height="150">
 </p>
 
 Student TaskPro a student-focused to-do list application designed 
@@ -14,7 +14,21 @@ urgent or significant task first.
 
 ## How to Use
 
+1. Add new entries using the `Add new entry` button or using the shortcut 
+`Alt + A`.
+   - When adding entries, make sure that: `Name` and `Subject` is not empty,
+   and the date and time is after the current time. Holding the `Alt` button
+   shows the shortcuts for focusing text fields.
 
+2. Mark entries as done using the `Done` checkbox. Entries marked as done
+are grayed out.
+   - When closing the app, entries marked as done are not saved.
+
+3. Delete entries using the `Delete` checkbox. Deleted entries are 
+unrecoverable.
+
+4. Closing the app saves the list, so you can get back the entries when
+opening a new session.
 
 ## Features
 
