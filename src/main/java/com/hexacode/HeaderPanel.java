@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ *  Panel class for displaying application title and icon
+ */
 public class HeaderPanel extends JPanel {
     public HeaderPanel() {
         setLayout(new BorderLayout());
@@ -45,6 +48,10 @@ public class HeaderPanel extends JPanel {
         add(rightPanel, BorderLayout.EAST);
     }
 
+    /**
+     * Loads logo from resources path
+     * @return {@link ImageIcon} Image
+     */
     private ImageIcon loadCircularLogo() {
         BufferedImage originalImage = null;
 
@@ -65,6 +72,12 @@ public class HeaderPanel extends JPanel {
         return null;
     }
 
+    /**
+     * Makes an image circular (for logo purposes)
+     * @param img Image to convert
+     * @param size Diameter of circle
+     * @return {@link BufferedImage} Circular image
+     */
     private BufferedImage makeCircularImage(BufferedImage img, int size) {
         BufferedImage circularImage = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = circularImage.createGraphics();

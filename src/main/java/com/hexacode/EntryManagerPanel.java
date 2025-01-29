@@ -148,14 +148,17 @@ public class EntryManagerPanel extends JPanel implements ActionListener {
     }
 
     /**
-     *
-     * @param entry
+     *  Deletes and entry from entry list and re-renders the panel
+     * @param entry Entry to delete
      */
     public void deleteEntry(Entry entry) {
         this.entryManager.deleteEntry(entry);
         rerender();
     }
 
+    /**
+     * Saves entries to file
+     */
     public void saveEntries() {
         entryManager.saveEntries();
     }

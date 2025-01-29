@@ -9,13 +9,14 @@ import javax.swing.*;
 
 import com.hexacode.Entry.TodoType;
 
-// needs to be refactored 
-// prolly add this to EntryManagerUI since it handles new entries
-// by user
+/**
+ * Panel UI for adding new entries (shown as a dialog box)
+ */
 public class NewEntryPanel extends JPanel {
-    private JTextField txfName, txfSubject;
-    private JComboBox<TodoType> cbxType;
-    private DateSelectionPanel dspDate;
+    private final JTextField txfName;
+    private final JTextField txfSubject;
+    private final JComboBox<TodoType> cbxType;
+    private final DateSelectionPanel dspDate;
 
     private static final Font CUSTOM_FONT = new Font("Inter", Font.PLAIN, 14);
     private static final TodoType[] typeChoices = {
@@ -26,6 +27,9 @@ public class NewEntryPanel extends JPanel {
             TodoType.GROUPWORK,
     };
 
+    /**
+     * Creates a {@link NewEntryPanel} instance
+     */
     NewEntryPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -68,18 +72,34 @@ public class NewEntryPanel extends JPanel {
         add(dspDate);
     }
 
+    /**
+     * Gets string from name {@link JTextField}
+     * @return Name
+     */
     public String getName() {
         return txfName.getText();
     }
 
+    /**
+     * Gets string from subject {@link JTextField}
+     * @return Subject
+     */
     public String getSubject() {
         return txfSubject.getText();
     }
 
+    /**
+     * Gets {@link TodoType} from type {@link JComboBox}
+     * @return {@link TodoType} type
+     */
     public TodoType getTodoType() {
         return (TodoType) cbxType.getSelectedItem();
     }
 
+    /**
+     * Gets {@link LocalDateTime} from date {@link DateSelectionPanel}
+     * @return {@link LocalDateTime} Date
+     */
     public LocalDateTime getDeadline() {
         return dspDate.getSelectedDateTime();
     }

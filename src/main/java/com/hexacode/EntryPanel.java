@@ -6,16 +6,28 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Panel UI class for entry
+ * <p>
+ *     Manages all UI-related methods for a single entry
+ * </p>
+ */
 public class EntryPanel extends JPanel {
     private static final Font CUSTOM_FONT = new Font("Inter", Font.PLAIN, 14);
     private Entry entry;
     private JLabel lblName, lblSubject, lblType, lblDeadline;
     private JCheckBox cbxDone, cbxDelete;
 
-    private EntryManagerPanel entryManagerPanel;
+    private final EntryManagerPanel entryManagerPanel;
 
     private JPanel contentPanel, checkboxPanel;
 
+    /**
+     * Creates an {@link EntryPanel} instance with {@link EntryManagerPanel}
+     * parent and an {@link Entry}
+     * @param entryManagerPanel {@link EntryManagerPanel} Parent
+     * @param entry {@link Entry} Entry to render
+     */
     EntryPanel(EntryManagerPanel entryManagerPanel, Entry entry) {
         this.entry = entry;
         this.entryManagerPanel = entryManagerPanel;
@@ -23,6 +35,9 @@ public class EntryPanel extends JPanel {
         setupListeners();
     }
 
+    /**
+     * Sets up the UI for entry panel
+     */
     private void setupUI() {
         setLayout(new BorderLayout());
         setBorder(
@@ -93,6 +108,9 @@ public class EntryPanel extends JPanel {
         add(checkboxPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * UI update for marking an entry as done
+     */
     private void markAsDone() {
         entry.setDone(true);
 
@@ -115,6 +133,9 @@ public class EntryPanel extends JPanel {
         lblDeadline.setForeground(Color.LIGHT_GRAY);
     }
 
+    /**
+     * UI update for marking an entry as undone
+     */
     private void markAsUndone() {
         entry.setDone(false);
 
@@ -130,6 +151,9 @@ public class EntryPanel extends JPanel {
         lblDeadline.setForeground(Color.WHITE);
     }
 
+    /**
+     * Adds listeners to {@link EntryPanel} checkboxes
+     */
     private void setupListeners() {
         cbxDone.addActionListener(e -> {
             if (cbxDone.isSelected()) {
@@ -160,6 +184,7 @@ public class EntryPanel extends JPanel {
         });
     }
 
+    // required for making the panel grow
     @Override
     public Dimension getMaximumSize() {
         return new Dimension(Integer.MAX_VALUE, getPreferredSize().height);
