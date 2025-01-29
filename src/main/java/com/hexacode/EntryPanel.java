@@ -2,6 +2,8 @@ package com.hexacode;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.time.format.DateTimeFormatter;
 
 // TODO: add mark as done and entry removal
@@ -12,6 +14,8 @@ public class EntryPanel extends JPanel {
     private JLabel lblName, lblSubject, lblType, lblDeadline;
     private JCheckBox cbxDone, cbxDelete;
 
+    private JPanel contentPanel, checkboxPanel;
+
     EntryPanel(Entry entry) {
         this.entry = entry;
         setupUI();
@@ -20,10 +24,15 @@ public class EntryPanel extends JPanel {
 
     private void setupUI() {
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBorder(
+                BorderFactory.createCompoundBorder(
+                        new LineBorder(new Color(0x38374F), 1, true),
+                        new EmptyBorder(10, 10, 10, 10)
+                )
+        );
         setBackground(new Color(0x38374F));
 
-        JPanel contentPanel = new JPanel();
+        contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBackground(new Color(0x38374F));
 
@@ -54,7 +63,7 @@ public class EntryPanel extends JPanel {
         contentPanel.add(lblType);
         contentPanel.add(lblDeadline);
 
-        JPanel checkboxPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        checkboxPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         checkboxPanel.setBackground(new Color(0x38374F));
 
         cbxDone = new JCheckBox("Done");
@@ -78,13 +87,30 @@ public class EntryPanel extends JPanel {
     private void setupListeners() {
         cbxDone.addActionListener(e -> {
             if (cbxDone.isSelected()) {
-                setBackground(new Color(0x6F6F6F));
+                setBackground(new Color(0x292232));
+                contentPanel.setBackground(new Color((0x292232)));
+                checkboxPanel.setBackground((new Color(0x292232)));
+                cbxDone.setBackground(new Color(0x292232));
+                cbxDelete.setBackground(new Color(0x292232));
+
+                setBorder(
+                        BorderFactory.createCompoundBorder(
+                                new LineBorder(new Color(0x38374F), 1, true),
+                                new EmptyBorder(10, 10, 10, 10)
+                        )
+                );
+
                 lblName.setForeground(Color.LIGHT_GRAY);
                 lblSubject.setForeground(Color.LIGHT_GRAY);
                 lblType.setForeground(Color.LIGHT_GRAY);
                 lblDeadline.setForeground(Color.LIGHT_GRAY);
             } else {
                 setBackground(new Color(0x38374F));
+                contentPanel.setBackground(new Color(0x38374F));
+                checkboxPanel.setBackground(new Color(0x38374F));
+                cbxDone.setBackground(new Color(0x38374F));
+                cbxDelete.setBackground(new Color(0x38374F));
+
                 lblName.setForeground(Color.WHITE);
                 lblSubject.setForeground(Color.WHITE);
                 lblType.setForeground(Color.WHITE);
